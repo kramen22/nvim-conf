@@ -1,0 +1,90 @@
+add_newline = false
+
+format = """
+$status\
+$git_branch$git_commit$git_state$git_status\
+$hg_branch\
+$cmd_duration\
+$username\
+$hostname\
+${custom.tmux}\
+$directory\
+$character\
+"""
+
+[git_branch]
+truncation_length = 8
+truncation_symbol = "…"
+format = "[\\($branch]($style)[=](dimmed white)"
+style = "bright-blue"
+
+[git_commit]
+only_detached = false
+format = "[$hash]($style) "
+style = "dimmed white"
+
+[git_state]
+disabled = true
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style)[\)](bright-blue) )'
+style = "bold red"
+
+[username]
+style_user = "blue bold"
+style_root = "black bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format =  "[@$hostname](yellow) "
+trim_at = "."
+style = "bold dimmed green"
+disabled = false
+
+[status]
+format = "[$status]($style) "
+symbol = "✖"
+not_executable_symbol = "🚫"
+not_found_symbol = "🔍"
+sigint_symbol = "🧱"
+signal_symbol = "⚡"
+style = "red"
+recognize_signal_code = true
+map_symbol = false
+disabled = false
+
+[character]
+format = "$symbol "
+success_symbol = "[\\$](bold cyan)"
+error_symbol = "[\\$](bold cyan)"
+vicmd_symbol = "[\\$](bold green)"
+disabled = false
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style)"
+style = "bold cyan"
+disabled = false
+read_only = "🔒"
+read_only_style = "red"
+truncation_symbol = "…/"
+home_symbol = "~"
+
+[cmd_duration]
+min_time = 2_000
+show_milliseconds = false
+format = "[$duration]($style) "
+style = "bold yellow"
+disabled = false
+show_notifications = false
+min_time_to_notify = 45_000
+
+[custom.tmux]
+command = """ tmux display -t "$TMUX_PANE" -p "#Ip#P" """
+when = """ test -n "$TMUX_PANE" """
+style = "yellow"
+format = "[$symbol($output )]($style)"
