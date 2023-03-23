@@ -10,6 +10,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'vim-airline/vim-airline'
+Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -32,6 +33,9 @@ let g:airline_theme='dark'
 
 "Enable Carriage Return To Auto Complete COC Suggestion
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+"Toggle Nerd Tree
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 " Add (Neo)Vim's native statusline support
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
